@@ -1,11 +1,6 @@
 package shootfeedFish;
 
 import java.awt.Rectangle;
-import java.io.File;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 
 public class Fire extends Thread{ 
 	
@@ -47,15 +42,7 @@ public class Fire extends Thread{
 					level1[i][j].setxAxis(1000000);
 					bullet.setxAxis(-10000);
 					score += 10 ;
-					//Get audio for fire
-					/*try {
-						File sound = new File("sounds//firesound.mp3");
-					AudioInputStream sb = AudioSystem.getAudioInputStream(sound);
-					Clip clip = AudioSystem.getClip();
-					clip.open(sb);
-					clip.start();
-					
-				    }catch(Exception e) {System.out.println(e);}*/
+
 				}
 			}
 		}

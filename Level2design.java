@@ -11,37 +11,50 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class Level1design extends JPanel implements KeyListener{
+public class Level2design extends JPanel implements KeyListener{
 	
-	JFrame window = new JFrame("Aquarius - LEVEL 1 - EASY"); 
+	JFrame window = new JFrame("Aquarius - LEVEL 2 - NORMAL"); 
 	
 	Shooterlevel shooter = new Shooterlevel(400, 650, "images//Shooter.png");
-	Level1[][] level1 = new Level1[2][15]; 
+	Level2[][] level2 = new Level2[3][15]; 
+	Level2[][] Boss = new Level2[1][1];
 	int xAxis = 0;
-	int yAxis = -20;
+	int yAxis = -300;
 	Bullet[] bullet = new Bullet[1000];
 	int counter = 0;
-	Drop dropper = new Drop(this, level1); 
+	Drop2 dropper = new Drop2(this, level2); 
+	Drop2 dropboss = new Drop2(this, Boss);  
 	
 
-	Level1design(){
+	Level2design(){
 		this.setFocusable(true);
 		this.addKeyListener(this);
 		window.add(this);
  		
-		for(int i = 0; i<level1.length; i++) {
-			for(int j = 0; j<level1[i].length; j++) {
-				level1[i][j]  = new Level1(xAxis + 42 , yAxis, "images//Shark level 1.jpg");  // set location of 1st fish
+		for(int i = 0; i < Boss.length; i++) {
+			for(int j = 0; j<Boss[i].length; j++) {
+				Boss[i][j]  = new Level2(xAxis + 500 , yAxis - 150, "images//Shark Boss.png");  // set location of Boss
 				xAxis += 70;
 				
 			}
 			yAxis += 80;
 			xAxis = 0;
 		}
+		dropboss.start();
+		for(int i = 0; i<level2.length; i++) {
+			for(int j = 0; j<level2[i].length; j++) {
+				level2[i][j]  = new Level2(xAxis + 42 , yAxis, "images//Shark 2.png");  // set location of 1st fish
+				xAxis += 70;
+				
+			}
+			yAxis += 80;
+			xAxis = 0;
+		} 
+
 		dropper.start();
 		
 		for(int i = 0; i < bullet.length; i++) {
-			bullet[i] = new Bullet(470, 700, "images//bullet.jpg");
+			bullet[i] = new Bullet(470, 700, "images//bullet1.png");
 		}
 
 
@@ -51,45 +64,59 @@ public class Level1design extends JPanel implements KeyListener{
 		window.setVisible(true);
 	}
 	public void paint(Graphics a) {
-		ImageIcon background = new ImageIcon("images//level 1 fixed.png"); 
+		ImageIcon background = new ImageIcon("images//level 2.png"); 
 		a.drawImage(background.getImage(), 0, 0, null);
 		
 		shooter.drawshooter(a);
-		for(int i = 0; i < level1.length; i++ ) {
-			for(int j = 0; j < level1[i].length; j++) {
-				level1[i][j].drawlevel1(a);
+		for(int i = 0; i < level2.length; i++ ) {
+			for(int j = 0; j < level2[i].length; j++) {
+				level2[i][j].drawlevel2(a);
 			}
 		}
+		for(int i = 0; i < Boss.length; i++ ) {
+			for(int j = 0; j < Boss[i].length; j++) {
+				Boss[i][j].drawlevel2(a);
+			}
+		}
+		
 		for(int i = 0; i < bullet.length; i++) {
 			bullet[i].drawBullet(a); 
 		}
 		// create the score
 		a.setColor(Color.white);
 		a.setFont(new Font("", Font.BOLD, 22));
-		a.drawString("Score = " + Fire.score, 70, 650);
+		a.drawString("Score = " + (Fire2.score + Fire2.scoreboss), 70, 650);
 		levelFailed();
 		levelComplete();
 	}
 	// Ban het ca map thi WIN
 	public void levelComplete() {
-		if(Fire.score >= 300) {
+		if(Fire2.score + Fire2.scoreboss == 750) {
 			window.dispose();
 			dropper.stop();
-			JOptionPane.showMessageDialog(null, "YOU WIN, Your score: " +Fire.score + "\n" + "Click OK to Next level"); 
-			Level2design l2 = new Level2design();
+			JOptionPane.showMessageDialog(null, "YOU WIN, Your score: " +(Fire2.score + Fire2.scoreboss) + "\n" + "Click OK to Next level");
 		}
 	}
 	
 	// khi ca map di het window thi gameover
 	public void levelFailed() {
 		
-		for(int i = 0; i < level1.length; i++) {
-			for(int j = 0; j < level1[i].length; j++) {
-				if(level1[i][j].getyAxis() > 620){
+		for(int i = 0; i < level2.length; i++) {
+			for(int j = 0; j < level2[i].length; j++) {
+				if(level2[i][j].getyAxis() > 800){
 					window.dispose();
-					JOptionPane.showMessageDialog(null, "GAMEOVER !!!, Your score: " +Fire.score);
+					JOptionPane.showMessageDialog(null, "GAMEOVER !!!, Your score: " +(Fire2.score + Fire2.scoreboss));
 					dropper.stop();
-					
+					break;
+				}
+			}
+		}
+		for(int i = 0; i < Boss.length; i++) {
+			for(int j = 0; j < Boss[i].length; j++) {
+				if(Boss[ i][j].getyAxis() > 1100){
+					window.dispose();
+					JOptionPane.showMessageDialog(null, "GAMEOVER !!!, Your score: " +(Fire2.score + Fire2.scoreboss));
+					dropper.stop();
 					break;
 				}
 			}
@@ -127,9 +154,11 @@ public class Level1design extends JPanel implements KeyListener{
 			}catch(Exception a) {System.out.println(e);} */
 			
 			bullet[counter].setxAxis(shooter.getxAxis() + 70); // set location of bullet so voi shooter  
-			Fire f = new Fire(bullet[counter], this, level1);
+			Fire2 f = new Fire2(bullet[counter], this, level2, Boss);
+
 			bullet[counter].setyAxis(shooter.getyAxis() + 70);
 			f.start();
+
 			counter++;
 		}
 	}

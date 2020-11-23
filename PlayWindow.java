@@ -19,13 +19,13 @@ import javax.swing.JPanel;
 // The 3rd window or the window when customer click play button
 public class PlayWindow extends JPanel implements ActionListener,KeyListener {
 
-	JFrame window = new JFrame(); 
+	JFrame window = new JFrame("AQUARIUS"); 
 	String[] a = {"Level 1 - Easy", "Level 2 - Normal", "Level 3 - Hard"};
 	JComboBox nameOfLevels = new JComboBox(a);
 	JButton enterButton = new JButton();
 	JButton backButton = new JButton(); 
 	
-	Font customFont = new Font("Roman", Font.ROMAN_BASELINE, 30); 
+	Font customFont = new Font("Roman", Font.ROMAN_BASELINE, 20); 
 	Font comboFont = new Font("Italic", Font.ITALIC, 25);
 	
 	PlayWindow(){
@@ -40,9 +40,9 @@ public class PlayWindow extends JPanel implements ActionListener,KeyListener {
 		
 		
 		backButton.setFont(customFont);
-		backButton.setText("<-- BACK <--");
-		backButton.setForeground(Color.red);
-		backButton.setBackground(Color.black);
+		backButton.setText(" BACK ");
+		backButton.setForeground(Color.RED);
+		backButton.setBackground(Color.lightGray);
 		backButton.addKeyListener(this);
 		backButton.addActionListener(this);;
 		window.add(backButton, BorderLayout.SOUTH);
@@ -52,9 +52,10 @@ public class PlayWindow extends JPanel implements ActionListener,KeyListener {
 		enterButton.addActionListener(this);
 		window.add(enterButton,BorderLayout.CENTER);
 		
-		window.setSize(1300,810);
+		window.setSize(1300,787);
 		window.setLocation(100, 10); 
 		window.setVisible(true);
+
 		
 	}
 	

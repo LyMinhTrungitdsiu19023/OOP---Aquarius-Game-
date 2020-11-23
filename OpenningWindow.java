@@ -39,7 +39,7 @@ public class OpenningWindow extends JPanel {
 		
 	 //Set time to close the first window and open the next one
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			window.dispose();
 			MenuWindow m = new MenuWindow();
 		}catch(Exception e) {System.out.println(e);}

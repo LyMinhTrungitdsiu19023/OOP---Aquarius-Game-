@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
 
-public class Shooterlevel1 {
+public class Shooterlevel {
 	private int xAxis;
 	private int yAxis; 
 	private String imageShoot;
@@ -26,7 +26,7 @@ public class Shooterlevel1 {
 	public void setImageShoot(String imageShoot) {
 		this.imageShoot = imageShoot;
 	}
-	public Shooterlevel1(int xAxis, int yAxis, String imageShoot) {
+	public Shooterlevel(int xAxis, int yAxis, String imageShoot) {
 		super();
 		this.xAxis = xAxis;
 		this.yAxis = yAxis;

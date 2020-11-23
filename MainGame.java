@@ -5,9 +5,9 @@ public class MainGame {
 		
 	  // OpenningWindow ow = new OpenningWindow();
 		//MenuWindow m = new MenuWindow();
-		PlayWindow pw = new PlayWindow(); 
+		//PlayWindow pw = new PlayWindow(); 
 		//Level1design l1 = new Level1design(); 
-		 //Level2design l2 = new Level2design(); 
+		 Level2design l2 = new Level2design(); 
 	}
 
 }
