@@ -3,6 +3,7 @@ package shootfeedFish;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -18,7 +19,7 @@ import javax.swing.JPanel;
 public class MenuWindow extends JPanel implements ActionListener,KeyListener{
 	
 	// Declare 
-	JFrame window = new JFrame();
+	JFrame window = new JFrame(); 
 	JButton playButton = new JButton();
 	JButton exitButton = new JButton();
 	JLabel centerImageLable = new JLabel();
@@ -30,7 +31,7 @@ public class MenuWindow extends JPanel implements ActionListener,KeyListener{
 	{
 		
 		
-		window.setForeground(Color.DARK_GRAY);
+		//window.setForeground(Color.DARK_GRAY);
 		window.add(this);
 		
 		//Design play button
@@ -39,6 +40,8 @@ public class MenuWindow extends JPanel implements ActionListener,KeyListener{
 		playButton.addActionListener(this);
 		playButton.addKeyListener(this);
 		window.add(playButton, BorderLayout.PAGE_START);
+ 
+	
 		
 		//Design end button
 		exitButton.setBackground(Color.black);
@@ -51,16 +54,15 @@ public class MenuWindow extends JPanel implements ActionListener,KeyListener{
 		// Set Window's Properties
 		window.setLocation(100, 10);
 		window.setUndecorated(true);
-		window.setSize(1300, 787);
+		window.setSize(1300, 812);
 		window.setVisible(true);	
 		
 	}
 	
     // Set the Background
 	public void paint(Graphics game) {
-		ImageIcon background = new ImageIcon("images//background (2).jpg"); 
-		
-		game.drawImage(background.getImage(), 0, 0, null);
+		ImageIcon background = new ImageIcon("images//menubackground.jpg"); 
+		game.drawImage(background.getImage(), 0, 0, null);  
 	}
 	
 	public void actionPerformed(ActionEvent e) {

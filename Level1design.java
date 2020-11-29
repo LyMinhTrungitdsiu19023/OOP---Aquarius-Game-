@@ -5,7 +5,11 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -13,7 +17,7 @@ import javax.swing.JPanel;
 
 public class Level1design extends JPanel implements KeyListener{
 	
-	JFrame window = new JFrame("Aquarius - LEVEL 1 - EASY"); 
+	JFrame window = new JFrame("Aquarium - LEVEL 1 - EASY"); 
 	
 	Shooterlevel shooter = new Shooterlevel(400, 650, "images//Shooter.png");
 	Level1[][] level1 = new Level1[2][15]; 
@@ -49,6 +53,16 @@ public class Level1design extends JPanel implements KeyListener{
 		window.setLocation(250, 20);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
+	
+		try {
+			File sound = new File("sounds//Level1Sound.wav");
+		AudioInputStream sb = AudioSystem.getAudioInputStream(sound);
+		Clip clip = AudioSystem.getClip();
+		clip.open(sb);
+		clip.start();
+		
+	    }catch(Exception e) {System.out.println(e);}
+	
 	}
 	public void paint(Graphics a) {
 		ImageIcon background = new ImageIcon("images//level 1 fixed.png"); 
